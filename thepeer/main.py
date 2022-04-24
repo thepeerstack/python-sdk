@@ -2,8 +2,9 @@ import requests
 import httpx
 import hmac
 import hashlib
-from decouple import config
-from utils.constants import BASE_URL
+from decouple import config  # type: ignore
+from utils.constants import BASE_URL  # type: ignore
+from utils.exceptions.handleErrors import SwitchErrorStates  # type: ignore
 
 
 class ThePeerInit:
@@ -12,11 +13,10 @@ class ThePeerInit:
         self.url = BASE_URL
         self.secret = secret
         # set default headers to be used in all requests
-        self.headers = {"x-api-key": secret, "content-Type": "application/json"}
+        self.headers = {"x-api-key": self.secret, "content-Type": "application/json"}
 
     def validate_signature(self, data, signature):
-        """_summary_
-
+        """helper method to validate the signature of the data received from thepeer's servers
         Args:
             data (dict|Any): the payload to which the signature is applied
             signature (string): the signature to be validated
@@ -31,7 +31,8 @@ class ThePeerInit:
 
     def index_user(self, name, identifier, email):
         try:
-            """_summary_
+            """this method helps identify the user on thepeer's servers in order to facilitate more usage of the SDK
+            it is usually the first method called by the user
 
             Args:
                 name (string): the name of the registered user
@@ -48,13 +49,10 @@ class ThePeerInit:
             return response.json()
 
         except Exception as e:
-            pass
+            raise SwitchErrorStates(e).switch()
 
 
 # test function
 thepeer = ThePeerInit(config("PEER_SECRET_KEY"))
-test = thepeer.index_user(
-    "Osagie Iyayi", "Ewave", "iyayiemmanuel1@gmail.com"
-)
-# signature = thepeer.validate_signature()
+test = thepeer.index_user("Osagie Iyayi", "Ewave", "iyayiemmanuel1@gmail.com")
 print(test)
