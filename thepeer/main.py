@@ -5,6 +5,7 @@ import hashlib
 from decouple import config  # type: ignore
 from utils.constants import BASE_URL  # type: ignore
 from utils.exceptions.handleErrors import SwitchErrorStates  # type: ignore
+import json # type: ignore
 
 
 class ThePeerInit:
@@ -43,6 +44,8 @@ class ThePeerInit:
                 dict: the json response from the server containing the user's id and other related information
             """
             data = {"name": name, "identifier": identifier, "email": email}
+            # convert the data to json
+            data = json.dumps(data)
             response = httpx.post(
                 f"{self.url}/users", data=data, headers=dict(self.headers)
             )
@@ -54,5 +57,5 @@ class ThePeerInit:
 
 # test function
 thepeer = ThePeerInit(config("PEER_SECRET_KEY"))
-test = thepeer.index_user("Osagie Iyayi", "Ewave", "iyayiemmanuel1@gmail.com")
+test = thepeer.index_user("Osagie Iyayi", "iyayiemmanuel1@gmail.com", "iyayiemmanuel1@gmail.com")
 print(test)
