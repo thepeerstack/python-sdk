@@ -18,7 +18,8 @@ class ThePeerInit:
 
     def validate_signature(self, data, signature):
         """helper method to validate the signature of the data received
-        from thepeer's servers
+        from thepeer's servers, it's usually used for validating webhook events
+        coming from thepeer's servers
         Args:
             data (dict|Any): the payload to which the signature is applied
             signature (string): the signature to be validated
