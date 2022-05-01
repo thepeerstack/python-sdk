@@ -29,7 +29,6 @@ repos:
     rev: v4.2.0
     hooks:
     - id: trailing-whitespace
-    - id: double-quote-string-fixer
     - id: check-docstring-first
     - id: check-yaml
     - id: debug-statements
