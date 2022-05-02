@@ -80,7 +80,8 @@ class ThePeerInit:
 
         Args:
             reference (string): the reference of the indexed user
-            data (dict): the data to be updated
+            data (dict): the data to be updated which is a dictionary
+            of at least one of the fields (name, identifier, identifier_type,email)
 
         Returns:
             dict: the json response from the server containing the user's id and
@@ -108,9 +109,91 @@ class ThePeerInit:
         except Exception as e:
             raise SwitchErrorStates(e).switch()
 
+    def get_user_links(self, reference):
+        """this method helps to get the user's payment links on thepeer's servers
+
+
+        Args:
+            reference (string): the reference of the indexed user
+
+        Returns:
+            dict: the json response from the server containing the linked accounts
+            related to the user's id and other related information
+        """
+        try:
+            response = httpx.get(f"{self.url}/users/{reference}/links", headers=dict(self.headers))
+            return response.json()
+        except Exception as e:
+            raise SwitchErrorStates(e).switch()
+
+    def get_single_link(self, link_id):
+        """this method returns a user's linked account details on thepeer's servers
+
+
+        Args:
+            link_id (string): the link ID
+
+        Returns:
+            dict: the json response from the server containing the payment link id and
+            other related information
+        """
+        try:
+            response = httpx.get(f"{self.url}/link/{link_id}", headers=dict(self.headers))
+            return response.json()
+        except Exception as e:
+            raise SwitchErrorStates(e).switch()
+
+    def charge_link(self, link_id, amount, remark, currency="NGN"):
+        """allows a business to charge a user via their linked account
+
+        Args:
+            link_id (string):the link ID
+            data (dict): the request payload which contains the amount and remark and optionally,
+            a currency (which could be NGN or USD default being NGN)
+
+        Returns:
+            dict: a transaction object generated from a webhook. more info about a
+            transaction object here https://docs.thepeer.co/transaction/transaction-object
+        """
+        try:
+            data = json.dumps({"amount": amount, "remark": remark, "currency": currency})
+            response = httpx.post(
+                f"{self.url}/link/{link_id}/charge", data=data, headers=dict(self.headers)
+            )
+            return response.json()
+        except Exception as e:
+            raise SwitchErrorStates(e).switch()
+
+    def authorize_direct_charge(self, auth_charge_reference, event):
+        """allows a business to authorize a direct charge request made by a user
+
+        Args:
+            auth_charge_reference (string): reference generated from the direct charge webhook event
+            event (string): a string which contains the kind of webhook event
+
+        Returns:
+            dict: containing a key value pair of the event(key) and the type of event
+        """
+        try:
+            data = json.dumps({"event": event})
+            response = httpx.post(
+                f"{self.url}/authorization/{auth_charge_reference}",
+                data=data,
+                headers=dict(self.headers),
+            )
+            return response.json()
+
+        except Exception as e:
+            raise SwitchErrorStates(e).switch()
+
 
 # test function
 thepeer = ThePeerInit(config("PEER_SECRET_KEY"))
 test = thepeer.index_user("Osagie Iyayi", "iyayiemmanuel1@gmail.com", "iyayiemmanuel1@gmail.com")
-get = thepeer.delete_user("e09c7080-acd9-452d-b3e4-83902fc1368b")
-print(test)
+get = thepeer.update_user(
+    "3bbb0fbf-82fa-48a0-80eb-d2c0338fe7dd", {"identifier": "iyayiemmanuel1@gmail.com"}
+)
+charge = thepeer.authorize_direct_charge("3bbb0fbf-82fa-48a0-80eb-d2c0338fe7dd", "failed")
+view = thepeer.view_user("3bbb0fbf-82fa-48a0-80eb-d2c0338fe7dd")
+# print(view)
+# print(get)
