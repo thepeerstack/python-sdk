@@ -186,6 +186,48 @@ class ThePeerInit:
         except Exception as e:
             raise SwitchErrorStates(e).switch()
 
+    def get_transaction_detail(self, transaction_id):
+        """Get the details about a transaction
+        Args:
+            transaction_id (string): the unique identifier of the transaction
+
+        Returns:
+            dict:containing the transaction object. more about a transaction object here
+            https://docs.thepeer.co/transaction/transaction-object#anatomy-of-a-transaction-object
+        """
+        try:
+            response = httpx.get(
+                f"{self.url}/transactions/{transaction_id}", headers=dict(self.headers)
+            )
+            return response.json()
+        except Exception as e:
+            raise SwitchErrorStates(e).switch()
+
+    def refund_transaction(self, transaction_id, reason):
+
+        """This method allows a business to refund a transaction back to the user
+        who made the transaction for obvious reasons.
+
+        Args:
+            transaction_id (string): the unique identifier of the transaction
+            reason (string): a string explaining the reason for the refund
+
+        Returns:
+             dict:
+             containing the transaction object. more about a transaction object can be found here
+             https://docs.thepeer.co/transaction/transaction-object#anatomy-of-a-transaction-object
+        """
+        try:
+            data = json.dumps({"reason": reason})
+            response = httpx.post(
+                f"{self.url}/transactions/{transaction_id}/refund",
+                data=data,
+                headers=dict(self.headers),
+            )
+            return response.json()
+        except Exception as e:
+            raise SwitchErrorStates(e).switch()
+
 
 # test function
 thepeer = ThePeerInit(config("PEER_SECRET_KEY"))
@@ -195,5 +237,5 @@ get = thepeer.update_user(
 )
 charge = thepeer.authorize_direct_charge("3bbb0fbf-82fa-48a0-80eb-d2c0338fe7dd", "failed")
 view = thepeer.view_user("3bbb0fbf-82fa-48a0-80eb-d2c0338fe7dd")
-# print(view)
-# print(get)
+print(view)
+print(get)
