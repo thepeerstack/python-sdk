@@ -74,7 +74,26 @@ class ThePeerInit:
         except Exception as e:
             raise SwitchErrorStates(e).switch()
 
-    def update_user(self, reference, data):
+    def all_users(self, page=1, per_page=15):
+        """this method gets all the indexed users of a business
+
+        Args:
+            page (int): a specific page of pagination instances
+            per_page (int): number of users to display in a single paginated instance page
+
+        Returns:
+            dict: a dict containing paginated lists of dicts of indexed users
+        """
+
+        try:
+            response = httpx.get(
+                f"{self.url}/users?page={page}&perPage={per_page}", headers=dict(self.headers)
+            )
+            return response.json()
+        except Exception as e:
+            raise SwitchErrorStates(e).switch()
+
+    def update_user(self, reference, **data):
         """this method helps update the user's information on thepeer's servers
         it is usually called after the user has indexed himself
 
@@ -232,10 +251,17 @@ class ThePeerInit:
 # test function
 thepeer = ThePeerInit(config("PEER_SECRET_KEY"))
 test = thepeer.index_user("Osagie Iyayi", "iyayiemmanuel1@gmail.com", "iyayiemmanuel1@gmail.com")
+
 get = thepeer.update_user(
-    "3bbb0fbf-82fa-48a0-80eb-d2c0338fe7dd", {"identifier": "iyayiemmanuel1@gmail.com"}
+    "3bbb0fbf-82fa-48a0-80eb-d2c0338fe7dd",
+    identifier="iyayiemmanuel1@gmail.com",
+    name="Osagie Iyayi",
+    email="iyayiemmanuel1@gmail.com",
 )
+
+# get = thepeer.all_users()
 charge = thepeer.authorize_direct_charge("3bbb0fbf-82fa-48a0-80eb-d2c0338fe7dd", "failed")
 view = thepeer.view_user("3bbb0fbf-82fa-48a0-80eb-d2c0338fe7dd")
-print(view)
-print(get)
+# print(test)
+# print(view)
+# print(get)
