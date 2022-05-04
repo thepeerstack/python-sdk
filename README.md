@@ -22,7 +22,7 @@ thepeer_instance = ThePeerInit("YOUR_API_KEY_HERE")
 
 ```
 
-## Available Methods Exposed By the Library
+## Available Methods Exposed By the SDK
 
 **Note:**
  - For More info about the exposed methods, please refer to the general [documentation](https://docs.thepeer.co/)
