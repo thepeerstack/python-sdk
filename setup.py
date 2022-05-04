@@ -13,15 +13,18 @@ setup(
     author="Osagie Iyayi",
     packages=["pythepeer"],
     author_email="iyayiemmanuel1@gmail.com",
-    url="https://github.com/E-wave112/py-thepeer",
+    url="https://github.com/thepeerstack/python-sdk",
     license="MIT",
-    install_requires=["requests", "pytest"],
+    install_requires=["httpx", "python-decouple"],
     classifiers=[
-        "Development Status :: 3 - Alpha",  # Chose either "3 - Alpha", "4 - Beta" or "5 - Production/Stable" as the current state of your package
+        "Development Status :: 5 - Production/Stable",
+        # Chose either "3 - Alpha", "4 - Beta" or "5 - Production/Stable"
+        # as the current state of your package
         "Intended Audience :: Developers",  # Define that your audience are developers
         "Topic :: Software Development :: Build Tools",
         "License :: OSI Approved :: MIT License",  # Again, pick a license
-        "Programming Language :: Python :: 3",  # Specify which python versions that you want to support
+        "Programming Language :: Python :: 3",
+        # Specify which python versions that you want to support
         "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
@@ -29,7 +32,8 @@ setup(
         "Programming Language :: Python :: 3.10",
         "Topic :: Software Development :: Libraries",
     ],
-    long_description="python sdk(API Wrapper) for interacting with thepeer payment processing infrastructure",
+    long_description="python sdk(API Wrapper) for interacting with thepeer \
+    payment processing infrastructure",
     keywords=["python", "fintech", "peer-to-peer"],
     zip_safe=False,
 )
