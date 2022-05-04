@@ -30,7 +30,7 @@ thepeer_instance = ThePeerInit("YOUR_API_KEY_HERE")
 This describes how to index a user on your account (this is usually the first step before using other methods)
 
 ```python
-test = thepeer.index_user("Osagie Iyayi", "iyayiemmanuel1@gmail.com", "iyayiemmanuel1@gmail.com")
+test = thepeer_instance.index_user("Osagie Iyayi", "iyayiemmanuel1@gmail.com", "iyayiemmanuel1@gmail.com")
 ```
 
 #### Parameters supported
@@ -47,7 +47,7 @@ This method validates incoming an [hmac](https://www.okta.com/identity-101/hmac/
 **Pro Tip:** it is used to verify that an incoming webhook event/response is coming from thepeer's servers
 
 ```python
-test = thepeer.validate_signature(data,signature)
+test = thepeer_instance.validate_signature(data,signature)
 ```
 #### Parameters supported
 
@@ -60,7 +60,7 @@ test = thepeer.validate_signature(data,signature)
 This method gets the information of an indexed user
 
 ```python
-test = thepeer.view_user("3bbb0fbf-82fa-48a0-80eb-d2c0338fe7dd")
+test = thepeer_instance.view_user("3bbb0fbf-82fa-48a0-80eb-d2c0338fe7dd")
 ```
 
 #### Parameters supported
@@ -74,7 +74,7 @@ test = thepeer.view_user("3bbb0fbf-82fa-48a0-80eb-d2c0338fe7dd")
 This method returns all indexed users for a specific account
 
 ```python
-test = thepeer.all_users(1,15)
+test = thepeer_instance.all_users(1,15)
 ```
 
 #### Parameters supported
@@ -89,7 +89,7 @@ test = thepeer.all_users(1,15)
 This methods helps to update the details of an indexed user
 
 ```python
-test = thepeer.update_user(reference,**data)
+test = thepeer_instance.update_user(reference,**data)
 ```
 #### Parameters supported
 
@@ -100,7 +100,7 @@ test = thepeer.update_user(reference,**data)
 
 ### Sample
 ```python
-test = thepeer.update_user("3bbb0fbf-82fa-48a0-80eb-d2c0338fe7dd", identifier="iyayiemmanuel1@gmail.com",
+test = thepeer_instance.update_user("3bbb0fbf-82fa-48a0-80eb-d2c0338fe7dd", identifier="iyayiemmanuel1@gmail.com",
     name="Osagie Iyayi",
     email="iyayiemmanuel1@gmail.com")
 ```
@@ -108,7 +108,7 @@ test = thepeer.update_user("3bbb0fbf-82fa-48a0-80eb-d2c0338fe7dd", identifier="i
 This methods helps to remove the details of an indexed user from a specific account
 
 ```python
-test = thepeer.delete_user("3bbb0fbf-82fa-48a0-80eb-d2c0338fe7dd")
+test = thepeer_instance.delete_user("3bbb0fbf-82fa-48a0-80eb-d2c0338fe7dd")
 ```
 
 #### Parameters supported
@@ -121,7 +121,7 @@ test = thepeer.delete_user("3bbb0fbf-82fa-48a0-80eb-d2c0338fe7dd")
 
 This method gets all payment links associated to an indexed user
 ```python
-test = thepeer.get_user_links("3bbb0fbf-82fa-48a0-80eb-d2c0338fe7dd")
+test = thepeer_instance.get_user_links("3bbb0fbf-82fa-48a0-80eb-d2c0338fe7dd")
 ```
 #### Parameters Required
 
@@ -135,7 +135,7 @@ test = thepeer.get_user_links("3bbb0fbf-82fa-48a0-80eb-d2c0338fe7dd")
 This method gets the payment information located in a payment link
 
 ```python
-test = thepeer.get_single_link("da14a90c-61c2-4cf7-a837-e3112a2d0c3d")
+test = thepeer_instance.get_single_link("da14a90c-61c2-4cf7-a837-e3112a2d0c3d")
 ```
 
 #### Parameters Required
@@ -148,7 +148,7 @@ test = thepeer.get_single_link("da14a90c-61c2-4cf7-a837-e3112a2d0c3d")
 ### ``` Charge A Link```
 This method allows a business to charge a user via their linked account
 ```python
-test = thepeer.charge_link(link_id, amount, remark, currency)
+test = thepeer_instance.charge_link(link_id, amount, remark, currency)
 ```
 
 #### Parameters Required
@@ -164,7 +164,7 @@ test = thepeer.charge_link(link_id, amount, remark, currency)
 This method allows a business to authorize a direct charge request made by a user
 
 ```python
-test = thepeer.authorize_direct_charge(auth_charge_reference, event)
+test = thepeer_instance.authorize_direct_charge(auth_charge_reference, event)
 ```
 #### Parameters Required
 
@@ -179,7 +179,7 @@ test = thepeer.authorize_direct_charge(auth_charge_reference, event)
 ### ```Get Transaction Detail```
 This method gets the details of a transaction
 ```python
-test = thepeer.get_transaction_detail("eda58ee3-4f2c-4aa4-9da7-10a2b8ced453")
+test = thepeer_instance.get_transaction_detail("eda58ee3-4f2c-4aa4-9da7-10a2b8ced453")
 ```
 
 #### Parameters Required
@@ -191,7 +191,7 @@ test = thepeer.get_transaction_detail("eda58ee3-4f2c-4aa4-9da7-10a2b8ced453")
 ### ```Refund Transaction```
 This method allows a business to refund a transaction back to the user for obvious reasons
 ```python
-test = thepeer.refund_transaction("28e52edf-16d9-4921-8a54-ef34d7029707", "possible threat actor"):
+test = thepeer_instance.refund_transaction("28e52edf-16d9-4921-8a54-ef34d7029707", "possible threat actor"):
 ```
 
 #### Parameters Required
