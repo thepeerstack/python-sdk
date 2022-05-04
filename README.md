@@ -1,6 +1,6 @@
 # thepeer python-sdk
 
-> Thepeer's official python sdk for developers to use in their pythonn projects.
+> Thepeer's official python sdk for developers to use in their python projects.
 
 - To start using this SDK, create an account at https://thepeer.co/ if you haven't already.
 - You can then retrieve your API keys from your [dashboard](https://dashboard.thepeer.co/)
