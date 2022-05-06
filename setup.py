@@ -1,10 +1,13 @@
+import pathlib
 from distutils.core import setup
 from setuptools import find_packages
 
 
-def readme():
-    with open("README.md") as f:
-        return f.read()
+# The directory containing this file
+HERE = pathlib.Path(__file__).parent
+
+# The text of the README file
+README = (HERE / "README.md").read_text()
 
 
 setup(
@@ -34,7 +37,7 @@ setup(
         "Programming Language :: Python :: 3.10",
         "Topic :: Software Development :: Libraries",
     ],
-    long_description=readme(),
+    long_description=README,
     keywords=["python", "fintech", "peer-to-peer"],
     zip_safe=False,
 )
