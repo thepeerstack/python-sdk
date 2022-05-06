@@ -1,12 +1,12 @@
 # thepeer python-sdk
 
-> Thepeer's official python sdk for developers to use in their project.
+> Thepeer's official python sdk for developers to use in their python projects.
 
-- To begin, create an account at https://thepeer.co/ if you haven't already.
-- You can also retrieve your API keys from your [dashboard](https://dashboard.thepeer.co/)
+- To start using this SDK, create an account at https://thepeer.co/ if you haven't already.
+- You can then retrieve your API keys from your [dashboard](https://dashboard.thepeer.co/)
 
 ## Installation
-To install, run:
+To install this sdk, run the command:
 ```bash
 pip install pythepeer
 ```
@@ -22,10 +22,11 @@ thepeer_instance = ThePeerInit("YOUR_API_KEY_HERE")
 
 ```
 
-## Available Methods Exposed By the Library
+## Available Methods Exposed By the SDK
 
 **Note:**
- - For More info, please refer to the general [documentation](https://docs.thepeer.co/)
+ - For More info about the exposed methods, please refer to the general [documentation](https://docs.thepeer.co/)
+ - Be sure to keep your API Credentials securely in [environment variables](https://www.twilio.com/blog/environment-variables-python)
 #### ```Indexing A User```
 This describes how to index a user on your account (this is usually the first step before using other methods)
 
