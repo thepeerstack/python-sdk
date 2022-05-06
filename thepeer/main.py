@@ -8,7 +8,6 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 
 import httpx  # noqa: E402
-from decouple import config  # noqa: E402
 from utils.constants import BASE_URL  # noqa: E402
 from utils.exceptions.handleErrors import SwitchErrorStates  # noqa: E402
 
@@ -251,22 +250,3 @@ class ThePeerInit:
             return response.json()
         except Exception as e:
             raise SwitchErrorStates(e).switch()
-
-
-# test function
-peer = ThePeerInit(config("PEER_SECRET_KEY"))
-test = peer.index_user("Osagie Iyayi", "iyayiemmanuel1@gmail.com", "iyayiemmanuel1@gmail.com")
-
-get = peer.update_user(
-    "3bbb0fbf-82fa-48a0-80eb-d2c0338fe7dd",
-    identifier="iyayiemmanuel1@gmail.com",
-    name="Osagie Iyayi",
-    email="iyayiemmanuel1@gmail.com",
-)
-
-# get = thepeer.all_users()
-charge = peer.authorize_direct_charge("3bbb0fbf-82fa-48a0-80eb-d2c0338fe7dd", "failed")
-view = peer.view_user("3bbb0fbf-82fa-48a0-80eb-d2c0338fe7dd")
-# print(test)
-# print(view)
-# print(get)
