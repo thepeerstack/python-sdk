@@ -38,6 +38,7 @@ setup(
         "Topic :: Software Development :: Libraries",
     ],
     long_description=README,
+    long_description_content_type="text/markdown",
     keywords=["python", "fintech", "peer-to-peer"],
     zip_safe=False,
 )
