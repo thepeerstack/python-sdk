@@ -204,4 +204,4 @@ test = thepeer_instance.refund_transaction("28e52edf-16d9-4921-8a54-ef34d7029707
 
 
  ## License
-This project is MIT Licensed (MIT). Please see the [License File](LICENSE) for more information.
+This project is MIT Licensed (MIT). Please see the [License File](https://github.com/thepeerstack/python-sdk/blob/main/LICENSE) for more information.
