@@ -16,7 +16,7 @@ setup(
     author_email="iyayiemmanuel1@gmail.com",
     url="https://github.com/thepeerstack/python-sdk",
     license="MIT",
-    install_requires=["httpx", "python-decouple"],
+    install_requires=["httpx"],
     include_package_data=True,
     classifiers=[
         "Development Status :: 5 - Production/Stable",
