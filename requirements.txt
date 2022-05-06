@@ -1,2 +1,3 @@
 httpx
 python-decouple
+setuptools>=42

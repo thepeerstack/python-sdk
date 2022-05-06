@@ -1,11 +1,16 @@
 import hashlib
 import hmac
 import json  # type: ignore
+import os
+import sys
 
-import httpx
-from decouple import config  # type: ignore
-from utils.constants import BASE_URL  # type: ignore
-from utils.exceptions.handleErrors import SwitchErrorStates  # type: ignore
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
+
+import httpx  # noqa: E402
+from decouple import config  # noqa: E402
+from utils.constants import BASE_URL  # noqa: E402
+from utils.exceptions.handleErrors import SwitchErrorStates  # noqa: E402
 
 
 class ThePeerInit:
@@ -249,10 +254,10 @@ class ThePeerInit:
 
 
 # test function
-thepeer = ThePeerInit(config("PEER_SECRET_KEY"))
-test = thepeer.index_user("Osagie Iyayi", "iyayiemmanuel1@gmail.com", "iyayiemmanuel1@gmail.com")
+peer = ThePeerInit(config("PEER_SECRET_KEY"))
+test = peer.index_user("Osagie Iyayi", "iyayiemmanuel1@gmail.com", "iyayiemmanuel1@gmail.com")
 
-get = thepeer.update_user(
+get = peer.update_user(
     "3bbb0fbf-82fa-48a0-80eb-d2c0338fe7dd",
     identifier="iyayiemmanuel1@gmail.com",
     name="Osagie Iyayi",
@@ -260,8 +265,8 @@ get = thepeer.update_user(
 )
 
 # get = thepeer.all_users()
-charge = thepeer.authorize_direct_charge("3bbb0fbf-82fa-48a0-80eb-d2c0338fe7dd", "failed")
-view = thepeer.view_user("3bbb0fbf-82fa-48a0-80eb-d2c0338fe7dd")
+charge = peer.authorize_direct_charge("3bbb0fbf-82fa-48a0-80eb-d2c0338fe7dd", "failed")
+view = peer.view_user("3bbb0fbf-82fa-48a0-80eb-d2c0338fe7dd")
 # print(test)
 # print(view)
 # print(get)

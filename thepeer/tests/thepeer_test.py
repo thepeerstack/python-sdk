@@ -1,9 +1,7 @@
 import unittest
+from thepeer import main  # type: ignore
 
-from thepeer.main import ThePeerInit
-
-
-thepeer_test_suites = ThePeerInit("pssk_test_vwww1yvvpymamtut26x5tvpx1znrcmeis2k0kvcmwzjax")
+thepeer_test_suites = main.ThePeerInit("pssk_test_vwww1yvvpymamtut26x5tvpx1znrcmeis2k0kvcmwzjax")
 
 
 class ThePeerInitMethods(unittest.TestCase):

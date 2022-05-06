@@ -1,4 +1,5 @@
 from distutils.core import setup
+from setuptools import find_packages
 
 
 def readme():
@@ -11,11 +12,12 @@ setup(
     version="1.0.0",
     description="python sdk for interacting with thepeer payment processing infrastructure",
     author="Osagie Iyayi",
-    packages=["pythepeer"],
+    packages=find_packages(),
     author_email="iyayiemmanuel1@gmail.com",
     url="https://github.com/thepeerstack/python-sdk",
     license="MIT",
     install_requires=["httpx", "python-decouple"],
+    include_package_data=True,
     classifiers=[
         "Development Status :: 5 - Production/Stable",
         # Chose either "3 - Alpha", "4 - Beta" or "5 - Production/Stable"
@@ -32,8 +34,7 @@ setup(
         "Programming Language :: Python :: 3.10",
         "Topic :: Software Development :: Libraries",
     ],
-    long_description="python sdk(API Wrapper) for interacting with thepeer \
-    payment processing infrastructure",
+    long_description=readme(),
     keywords=["python", "fintech", "peer-to-peer"],
     zip_safe=False,
 )
