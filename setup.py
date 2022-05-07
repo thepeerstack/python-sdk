@@ -1,6 +1,5 @@
 import pathlib
 from distutils.core import setup
-from setuptools import find_packages
 
 
 # The directory containing this file
@@ -12,10 +11,10 @@ README = (HERE / "README.md").read_text()
 
 setup(
     name="pythepeer",
-    version="1.0.0",
+    version="1.0.1",
     description="python sdk for interacting with thepeer payment processing infrastructure",
     author="Osagie Iyayi",
-    packages=find_packages(),
+    packages=["thepeer", "thepeer.main"],
     author_email="iyayiemmanuel1@gmail.com",
     url="https://github.com/thepeerstack/python-sdk",
     license="MIT",
