@@ -12,7 +12,7 @@ README = (HERE / "README.md").read_text()
 
 setup(
     name="pythepeer",
-    version="1.0.1",
+    version="1.0.2",
     description="python sdk for interacting with thepeer payment processing infrastructure",
     author="Osagie Iyayi",
     packages=["thepeer"],
