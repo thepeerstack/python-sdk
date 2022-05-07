@@ -1,4 +1,5 @@
 import pathlib
+import setuptools  # noqa: F401
 from distutils.core import setup
 
 
@@ -14,7 +15,7 @@ setup(
     version="1.0.1",
     description="python sdk for interacting with thepeer payment processing infrastructure",
     author="Osagie Iyayi",
-    packages=["thepeer", "thepeer.main"],
+    packages=["thepeer"],
     author_email="iyayiemmanuel1@gmail.com",
     url="https://github.com/thepeerstack/python-sdk",
     license="MIT",
