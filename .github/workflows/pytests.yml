@@ -1,4 +1,4 @@
-name: Run TestCases
+name: build
 
 on:
   push:
