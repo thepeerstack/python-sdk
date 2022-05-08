@@ -2,6 +2,12 @@
 
 ![example workflow](https://github.com/thepeerstack/python-sdk/actions/workflows/pytests.yml/badge.svg)
 
+![PyPI - Downloads](https://img.shields.io/pypi/dm/pythepeer?style=flat-square)
+![PyPI - License](https://img.shields.io/pypi/l/pythepeer)
+
+![PyPI](https://img.shields.io/pypi/v/pythepeer)
+![Codecov](https://img.shields.io/codecov/c/gh/E-wave112/py-thepeer?token=gYijsI9TCm)
+
 > Thepeer's official python sdk for developers to use in their python projects.
 
 - To start using this SDK, create an account at https://thepeer.co/ if you haven't already.
