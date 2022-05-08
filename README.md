@@ -1,5 +1,7 @@
 # thepeer python-sdk
 
+![example workflow](https://github.com/thepeerstack/python-sdk/actions/workflows/pytests.yml/badge.svg)
+
 > Thepeer's official python sdk for developers to use in their python projects.
 
 - To start using this SDK, create an account at https://thepeer.co/ if you haven't already.
