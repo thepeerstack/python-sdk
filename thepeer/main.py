@@ -1,5 +1,5 @@
-import hashlib
 import hmac
+import hashlib
 import json  # type: ignore
 import os
 import sys
@@ -31,9 +31,8 @@ class ThePeerInit:
         Returns:
             _type_: boolean if the signature is valid or not
         """
-        return (
-            signature == hmac.new(self.secret.encode(), data.encode(), hashlib.sha1()).hexdigest()
-        )
+        SHA1 = hashlib.sha1
+        return signature == hmac.new(self.secret.encode(), data.encode(), SHA1).hexdigest()
 
     def index_user(self, name, identifier, email):
 
