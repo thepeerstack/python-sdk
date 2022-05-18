@@ -14,14 +14,14 @@ pip install pythepeer
 ```
 
 ## Usage
-Instantiate the ThePeerInit class like so:
+Instantiate the ThepeerInit class like so:
 ```python
 import thepeer
-from thepeer.main import ThePeerInit
+from thepeer.main import ThepeerInit
 
 # create an instance of ThePeerInit class
 
-thepeer_instance = ThePeerInit("YOUR_API_KEY_HERE")
+thepeer_instance = ThepeerInit("YOUR_API_KEY_HERE")
 
 ```
 
@@ -30,7 +30,7 @@ thepeer_instance = ThePeerInit("YOUR_API_KEY_HERE")
 **Note:**
  - For More info about the exposed methods, please refer to the general [documentation](https://docs.thepeer.co/)
  - Be sure to keep your API Credentials securely in [environment variables](https://www.twilio.com/blog/environment-variables-python)
-#### ```Indexing A User```
+### Indexing A User
 This describes how to index a user on your account (this is usually the first step before using other methods)
 
 ```python
@@ -41,11 +41,11 @@ test = thepeer_instance.index_user("Osagie Iyayi", "iyayiemmanuel1@gmail.com", "
 
 | Parameters           | Data Type                 | Required | Description                                                                                                                                                                                                                                         |
 |----------------------|---------------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| name        | string                   | true     | The name of user to be indexed.
-| identifier            | string                   |  true    | the identifier of the account(either email or username).
-| email        | string                   | true     | the email of the user                                                                        |
+| ```name```        | ```string```                   | ```true```     | ```The name of user to be indexed```.
+| ```identifier```            | ```string```                   |  ```true```    | ```the identifier of the account(either email or username).```
+| ```email```        | ```string```                   | ```true```     | ```the email of the user```                                                                        |
 
-#### ```Validating a HMAC signature```
+### Validating a HMAC signature
 This method validates incoming an [hmac](https://www.okta.com/identity-101/hmac/) signature with the payload and credentials that was passed with it
 
 **Pro Tip:** it is used to verify that an incoming webhook event/response is coming from thepeer's servers
@@ -57,10 +57,10 @@ test = thepeer_instance.validate_signature(data,signature)
 
 | Parameters           | Data Type                 | Required | Description                                                                                                                                                                                                                                         |
 |----------------------|---------------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| data            | dictionary                  |  true    | the payload containing the data to be authenticated
-|  signature       | string                   | true     | The HMAC signature                                                                        |
+| ```data```           | ```dictionary```                  |  ```true```    | ```the payload containing the data to be authenticated```
+|  ```signature```       | ```string```                   | ```true```     | ```The HMAC signature```                                                                        |
 
-#### ```Get an Indexed User```
+### Get an Indexed User
 This method gets the information of an indexed user
 
 ```python
@@ -72,9 +72,9 @@ test = thepeer_instance.view_user("3bbb0fbf-82fa-48a0-80eb-d2c0338fe7dd")
 
 | Parameters           | Data Type                 | Required | Description                                                                                                                                                                                                                                         |
 |----------------------|---------------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| reference            | string                  |  true    | the unique reference returned when the user was indexed
+| ```reference```            | ```string```                  |  ```true```    | ```the unique reference returned when the user was indexed```
 
-#### ```Get All Indexed Users```
+### Get All Indexed Users
 This method returns all indexed users for a specific account
 
 ```python
@@ -85,11 +85,11 @@ test = thepeer_instance.all_users(1,15)
 
 | Parameters           | Data Type                 | Required | Description                                                                                                                                                                                                                                         |
 |----------------------|---------------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| page            | integer               |  false    | the first page displaying all the indexed users. defaults to 1
-|  per_page      | integer                  | false     | The number of users to display per page. defaults to 15                                                                    |
+| ```page```            | ```integer```               |  ```false```    | ```the first page displaying all the indexed users. defaults to 1```
+|  ```per_page```      | ```integer```                  | ```false```     | ```The number of users to display per page. defaults to 15          ```                                                          |
 
 
-#### ```Update an Indexed User```
+### Update an Indexed User
 This methods helps to update the details of an indexed user
 
 ```python
@@ -99,16 +99,16 @@ test = thepeer_instance.update_user(reference,**data)
 
 | Parameters           | Data Type                 | Required | Description                                                                                                                                                                                                                                         |
 |----------------------|---------------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| reference            | string               |  true    | the unique reference returned when the user was indexed
-|  data      | Any                  | true    | A keyword argument which contains on or more of the indexed user's email, name or identifier                                                                   |
+| ```reference```            | ```string```               |  ```true```    | ```the unique reference returned when the user was indexed```
+|  ```data```      | ```Any```                  | ```true```    | ```A keyword argument which contains on or more of the indexed user's email, name or identifier```                                                                   |
 
 ### Sample
 ```python
-test = thepeer_instance.update_user("3bbb0fbf-82fa-48a0-80eb-d2c0338fe7dd", identifier="iyayiemmanuel1@gmail.com",
-    name="Osagie Iyayi",
-    email="iyayiemmanuel1@gmail.com")
+test = thepeer_instance.update_user("3bbb0fbf-82fa-48a0-80eb-d2c0338fe7dd", identifier="dwave101@yahoo.com",
+    name="Edmond Kirsch",
+    email="dwave101@gmail.com")
 ```
-#### ```Remove an Indexed User```
+### Remove an Indexed User
 This methods helps to remove the details of an indexed user from a specific account
 
 ```python
@@ -119,9 +119,9 @@ test = thepeer_instance.delete_user("3bbb0fbf-82fa-48a0-80eb-d2c0338fe7dd")
 
 | Parameters           | Data Type                 | Required | Description                                                                                                                                                                                                                                         |
 |----------------------|---------------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| reference            | string                  |  true    | the unique reference returned when the user was indexed
+| ```reference```            | ```string```                  |  ```true```    | ```the unique reference returned when the user was indexed```
 
-#### ```Get User Links```
+### Get User Links
 
 This method gets all payment links associated to an indexed user
 ```python
@@ -131,10 +131,10 @@ test = thepeer_instance.get_user_links("3bbb0fbf-82fa-48a0-80eb-d2c0338fe7dd")
 
 | Parameters           | Data Type                 | Required | Description                                                                                                                                                                                                                                         |
 |----------------------|---------------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| reference            | string                  |  true    | the unique reference returned when the user was indexed
+| ```reference```            | ```string```                  |  ```true```    | ```the unique reference returned when the user was indexed```
 
 
-### ```Get Single Link```
+### Get Single Link
 
 This method gets the payment information located in a payment link
 
@@ -146,10 +146,10 @@ test = thepeer_instance.get_single_link("da14a90c-61c2-4cf7-a837-e3112a2d0c3d")
 
 | Parameters           | Data Type                 | Required | Description                                                                                                                                                                                                                                         |
 |----------------------|---------------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| link_id           | string                  |  true    | the unique link_id containing the payment information
+| ```link_id```           | ```string```                  |  ```true```    | ```the unique link_id containing the payment information```
 
 
-### ``` Charge A Link```
+### Charge A Link
 This method allows a business to charge a user via their linked account
 ```python
 test = thepeer_instance.charge_link(link_id, amount, remark, currency)
@@ -159,12 +159,12 @@ test = thepeer_instance.charge_link(link_id, amount, remark, currency)
 
 | Parameters           | Data Type                 | Required | Description                                                                                                                                                                                                                                         |
 |----------------------|---------------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| link_id        | string                   | true     | the unique link_id containing the payment information
-| amount            | integer               |  true    | the amount of the whole transaction
-| remark        | string                   | true     | short detail about the transaction                                                                     |
-| currency               | string                    | false    | The denomination medium of paying (either one of NGN and USD). defaults to NGN
+| ```link_id```        | ```string```                   | ```true```     | ```the unique link_id containing the payment information```
+| ```amount```            | ```integer```               |  ```true```    | ```the amount of the whole transaction```
+| ```remark```        | ```string```                   | ```true```     | ```short detail about the transaction```                                                                     |
+| ```currency```               | ```string```                    | ```false```    | ```The denomination medium of paying (either one of NGN and USD). defaults to NGN```
 
-### ```Authorize Direct Charge```
+### Authorize Direct Charge
 This method allows a business to authorize a direct charge request made by a user
 
 ```python
@@ -174,13 +174,13 @@ test = thepeer_instance.authorize_direct_charge(auth_charge_reference, event)
 
 | Parameters           | Data Type                 | Required | Description                                                                                                                                                                                                                                         |
 |----------------------|---------------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| auth_charge_reference            | string          |  true   | the reference associated to a pending charge request
-|  event     | string                | true     | the type of webhook event                                              |
+| ```auth_charge_reference```            | ```string```          |  ```true```   | ```the reference associated to a pending charge request```
+|  ```event```     | ```string```                | ```true```     | ```the type of webhook event```                                              |
 
 **Pro Tip:** the various types of webhook events are available [here](https://docs.thepeer.co/authorization/process-authorization-requests#supported-events)
 
 
-### ```Get Transaction Detail```
+### Get Transaction Detail
 This method gets the details of a transaction
 ```python
 test = thepeer_instance.get_transaction_detail("eda58ee3-4f2c-4aa4-9da7-10a2b8ced453")
@@ -190,9 +190,9 @@ test = thepeer_instance.get_transaction_detail("eda58ee3-4f2c-4aa4-9da7-10a2b8ce
 
 | Parameters           | Data Type                 | Required | Description                                                                                                                                                                                                                                         |
 |----------------------|---------------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| transaction_id           | string                  |  true    | the unique transaction identifier
+| ```transaction_id```           | ```string```                  |  ```true```    | ```the unique transaction identifier```
 
-### ```Refund Transaction```
+### Refund Transaction
 This method allows a business to refund a transaction back to the user for obvious reasons
 ```python
 test = thepeer_instance.refund_transaction("28e52edf-16d9-4921-8a54-ef34d7029707", "possible threat actor"):
@@ -201,8 +201,8 @@ test = thepeer_instance.refund_transaction("28e52edf-16d9-4921-8a54-ef34d7029707
 #### Parameters Required
 | Parameters           | Data Type                 | Required | Description                                                                                                                                                                                                                                         |
 |----------------------|---------------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| transaction_id            | string          |  true   | the unique transaction identifier
-|  reason     | string                | false    | a short sentence explaining reasons for the refund                                              |
+| ```transaction_id```            | ```string```          |  ```true```   | ```the unique transaction identifier```
+|  ```reason```     | ```string```                | ```false```    | ```a short sentence explaining reasons for the refund```                                              |
 
 
 
