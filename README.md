@@ -19,7 +19,7 @@ Instantiate the ThepeerInit class like so:
 import thepeer
 from thepeer.main import ThepeerInit
 
-# create an instance of ThePeerInit class
+# create an instance of ThepeerInit class
 
 thepeer_instance = ThepeerInit("YOUR_API_KEY_HERE")
 
