@@ -186,11 +186,11 @@ class ThepeerInit:
         except Exception as e:
             raise SwitchErrorStates(e).switch()
 
-    def authorize_direct_charge(self, auth_charge_reference, event):
+    def authorize_charge(self, charge_reference, event):
         """allows a business to authorize a direct charge request made by a user
 
         Args:
-            auth_charge_reference (string): reference generated from the direct charge webhook event
+            charge_reference (string): reference generated from the direct charge webhook event
             event (string): a string which contains the kind of webhook event
 
         Returns:
@@ -199,7 +199,7 @@ class ThepeerInit:
         try:
             data = json.dumps({"event": event})
             response = httpx.post(
-                f"{self.url}/authorization/{auth_charge_reference}",
+                f"{self.url}/authorization/{charge_reference}",
                 data=data,
                 headers=dict(self.headers),
             )

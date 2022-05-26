@@ -106,12 +106,10 @@ class ThePeerInitMethods(unittest.TestCase):
             {"message": "link not found"},
         )
 
-    def test_authorize_direct_charge(self):
+    def test_authorize_charge(self):
         self.assertEqual.__self__.maxDiff = None
         self.assertEqual(
-            thepeer_test_suites.authorize_direct_charge(
-                "3bbb0fbf-82fa-48a0-80eb-d2c0338fe7dd", "charge"
-            ),
+            thepeer_test_suites.authorize_charge("3bbb0fbf-82fa-48a0-80eb-d2c0338fe7dd", "charge"),
             {
                 "message": "The given data was invalid.",
                 "errors": {"event": ["The selected event is invalid."]},
