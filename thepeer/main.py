@@ -12,7 +12,7 @@ from utils.constants import BASE_URL  # noqa: E402
 from utils.exceptions.handleErrors import SwitchErrorStates  # noqa: E402
 
 
-class ThepeerInit:
+class Thepeer:
     def __init__(self, secret):
         # pass a default value for the url
         self.url = BASE_URL

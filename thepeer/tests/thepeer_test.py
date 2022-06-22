@@ -1,7 +1,7 @@
 import unittest
 from thepeer import main  # type: ignore
 
-thepeer_test_suites = main.ThepeerInit("pssk_test_vwww1yvvpymamtut26x5tvpx1znrcmeis2k0kvcmwzjax")
+thepeer_test_suites = main.Thepeer("pssk_test_vwww1yvvpymamtut26x5tvpx1znrcmeis2k0kvcmwzjax")
 
 
 class ThePeerInitMethods(unittest.TestCase):

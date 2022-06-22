@@ -1,4 +1,4 @@
-# thepeer python-sdk
+# Thepeer python-sdk
 
 ![example workflow](https://github.com/thepeerstack/python-sdk/actions/workflows/pytests.yml/badge.svg) ![PyPI - Downloads](https://img.shields.io/pypi/dm/pythepeer?style=flat-square) ![PyPI - License](https://img.shields.io/pypi/l/pythepeer) ![PyPI](https://img.shields.io/pypi/v/pythepeer) ![Codecov](https://img.shields.io/codecov/c/gh/E-wave112/py-thepeer?token=gYijsI9TCm)
 
@@ -14,14 +14,14 @@ pip install pythepeer
 ```
 
 ## Usage
-Instantiate the ThepeerInit class like so:
+Instantiate ```Thepeer``` class like so:
 ```python
 import thepeer
-from thepeer.main import ThepeerInit
+from thepeer.main import Thepeer
 
 # create an instance of ThepeerInit class
 
-thepeer_instance = ThepeerInit("YOUR_API_KEY_HERE")
+thepeer_instance = Thepeer("YOUR_API_KEY_HERE")
 
 ```
 
