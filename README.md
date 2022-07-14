@@ -17,7 +17,7 @@ pip install pythepeer
 Instantiate ```Thepeer``` class like so:
 ```python
 import thepeer
-from thepeer.main import Thepeer
+from thepeer import Thepeer
 
 # create an instance of ThepeerInit class
 
