@@ -4,12 +4,9 @@ import json  # type: ignore
 import os
 import sys
 
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
-
-
 import httpx  # noqa: E402
-from utils.constants import BASE_URL  # noqa: E402
-from utils.exceptions.handleErrors import SwitchErrorStates  # noqa: E402
+from .utils.constants import BASE_URL  # noqa: E402
+from .utils.handleErrors import SwitchErrorStates  # noqa: E402
 
 
 class Thepeer:
