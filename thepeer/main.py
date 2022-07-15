@@ -6,7 +6,7 @@ import sys
 
 import httpx  # noqa: E402
 from .utils.constants import BASE_URL  # noqa: E402
-from .utils.handleErrors import SwitchErrorStates  # noqa: E402
+from .utils.exceptions.handleErrors import SwitchErrorStates  # noqa: E402
 
 
 class Thepeer:

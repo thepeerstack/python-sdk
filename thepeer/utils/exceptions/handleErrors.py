@@ -1,10 +1,10 @@
-from .exceptions import ForbiddenException  # type: ignore
-from .exceptions import NotAcceptableException  # type: ignore
-from .exceptions import NotFoundException  # type: ignore
-from .exceptions import ServerErrorException  # type: ignore
-from .exceptions import ServiceUnavailableException  # type: ignore
-from .exceptions import UnauthorizedException  # type: ignore
-from .exceptions import UnprocessableEntityException  # type: ignore
+from .types.forbidden import ForbiddenException  # type: ignore
+from .types.notacceptable import NotAcceptableException  # type: ignore
+from .types.notfound import NotFoundException  # type: ignore
+from .types.servererror import ServerErrorException  # type: ignore
+from .types.serviceunavailable import ServiceUnavailableException  # type: ignore
+from .types.unauthorized import UnauthorizedException  # type: ignore
+from .types.unprocessableentity import UnprocessableEntityException  # type: ignore
 
 
 class SwitchErrorStates:
