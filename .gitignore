@@ -132,3 +132,4 @@ dmypy.json
 !run_tests.sh
 notes.md
 guide.md
+.DS_Store
