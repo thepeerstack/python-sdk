@@ -38,4 +38,4 @@ jobs:
           pip install coverage
         # Run the tests. I'm using unittest and coverage and the file is in the tests directory.
       - name: Run tests
-        run: coverage run -m unittest thepeer/tests/thepeer_test.py
+        run: coverage run -m unittest
