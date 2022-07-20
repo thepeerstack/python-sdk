@@ -129,5 +129,7 @@ dmypy.json
 .pyre/
 
 *.sh
+!run_tests.sh
 notes.md
 guide.md
+.DS_Store
