@@ -1,8 +1,6 @@
 import hmac
 import hashlib
 import json  # type: ignore
-import os
-import sys
 
 import httpx  # noqa: E402
 from .utils.constants import BASE_URL  # noqa: E402
@@ -16,6 +14,35 @@ class Thepeer:
         self.secret = secret
         # set default headers to be used in all requests
         self.headers = {"x-api-key": self.secret, "content-Type": "application/json"}
+
+    def get_businesses(self, channel: str):
+        """This endpoint returns businesses based on the API they integrated.
+        Args:
+            channel (string): The specific API to return businesses of.
+            Supported values are `send`, `checkout`, and `direct_charge`.
+        """
+        try:
+            response = httpx.post(
+                f"{self.url}/businesses?channel={channel}", headers=dict(self.headers)
+            )
+            return response.json()
+        except Exception as e:
+            raise SwitchErrorStates(e).switch()
+
+    def generate_checkout(self, data):
+        """
+        This is a checkout endpoint that you can use to generate a link for your customer to make a
+        one-time payment with.
+        Args:
+            data (dict): The request payload which contains the `currency` (NGN),
+            `amount`, `email`, and optionally `redirect_url` and `meta` fields.
+        """
+        try:
+            data = json.dumps(data)
+            response = httpx.post(f"{self.url}/checkout", data=data, headers=dict(self.headers))
+            return response.json()
+        except Exception as e:
+            raise SwitchErrorStates(e).switch()
 
     def validate_signature(self, data, signature):
         """helper method to validate the signature of the data received

@@ -1,6 +1,6 @@
 default_stages: [commit, push]
 default_language_version:
-  python: python3.7
+  python: python3.9
 repos:
   - repo: https://github.com/psf/black
     rev: 22.3.0
@@ -8,7 +8,7 @@ repos:
     - id: black
       args: [
         --line-length=100,
-        --target-version=py37,
+        --target-version=py39,
       ]
       exclude: ^(venv/|docs/)
       types: ['python']
