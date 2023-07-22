@@ -123,7 +123,7 @@ class Thepeer:
         except Exception as e:
             raise SwitchErrorStates(e).switch()
 
-    def update_user(self, reference: str, **data: dict[str, Union[str, int]]):
+    def update_user(self, reference: str, **data):
         """this method helps update the user's information on thepeer's servers
         it is usually called after the user has indexed himself
 
