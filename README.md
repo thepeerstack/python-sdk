@@ -177,7 +177,7 @@ test = thepeer_instance.authorize_charge(charge_reference, event)
 | ```charge_reference```            | ```string```          |  ```true```   | ```the reference associated to a pending charge request```
 |  ```event```     | ```string```                | ```true```     | ```the type of webhook event```                                              |
 
-**Pro Tip:** the various types of webhook events are available [here](https://docs.thepeer.co/authorization/process-authorization-requests#supported-events)
+**Pro Tip:** the various types of webhook events are available [here](https://docs.thepeer.co/webhooks/overview)
 
 
 ### Get transaction detail
