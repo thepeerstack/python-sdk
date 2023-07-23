@@ -23,7 +23,7 @@ class Thepeer:
             Supported values are `send`, `checkout`, and `direct_charge`.
         """
         try:
-            response = httpx.post(
+            response = httpx.get(
                 f"{self.url}/businesses?channel={channel}", headers=dict(self.headers)
             )
             return response.json()
