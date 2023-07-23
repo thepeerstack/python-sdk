@@ -122,7 +122,7 @@ test = thepeer_instance.delete_user("3bbb0fbf-82fa-48a0-80eb-d2c0338fe7dd")
 
 ### Get user links
 
-This method gets all payment links associated to an indexed user
+This endpoint returns all linked accounts of a user, the user’s account details, as well as the business the account is on.
 ```python
 test = thepeer_instance.get_user_links("3bbb0fbf-82fa-48a0-80eb-d2c0338fe7dd")
 ```
@@ -133,9 +133,9 @@ test = thepeer_instance.get_user_links("3bbb0fbf-82fa-48a0-80eb-d2c0338fe7dd")
 | ```reference```            | ```string```                  |  ```true```    | ```the unique reference returned when the user was indexed```
 
 
-### Get single link
+### Get single link (linked account)
 
-This method gets the payment information located in a payment link
+This endpoint returns a user's linked account's details.
 
 ```python
 test = thepeer_instance.get_single_link("da14a90c-61c2-4cf7-a837-e3112a2d0c3d")
@@ -145,7 +145,7 @@ test = thepeer_instance.get_single_link("da14a90c-61c2-4cf7-a837-e3112a2d0c3d")
 
 | Parameters           | Data type                 | Required | Description                                                                                                                                                                                                                                         |
 |----------------------|---------------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| ```link_id```           | ```string```                  |  ```true```    | ```the unique link_id containing the payment information```
+| ```link_id```           | ```string```                  |  ```true```    | ```The link’s identifier```
 
 
 ### Charge a link
@@ -158,7 +158,7 @@ test = thepeer_instance.charge_link(link_id, amount, remark, currency)
 
 | Parameters           | Data type                 | Required | Description                                                                                                                                                                                                                                         |
 |----------------------|---------------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| ```link_id```        | ```string```                   | ```true```     | ```the unique link_id containing the payment information```
+| ```link_id```        | ```string```                   | ```true```     | ```The link’s identifier```
 | ```amount```            | ```integer```               |  ```true```    | ```the amount of the whole transaction```
 | ```remark```        | ```string```                   | ```true```     | ```short detail about the transaction```                                                                     |
 | ```currency```               | ```string```                    | ```false```    | ```The denomination medium of paying (either one of NGN and USD). defaults to NGN```
