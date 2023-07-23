@@ -12,7 +12,7 @@ README = (HERE / "README.md").read_text()
 
 setup(
     name="pythepeer",
-    version="0.0.4",
+    version="0.0.5",
     description="official python sdk for interacting with thepeer payment processing \
     infrastructure",
     author="Osagie Iyayi",
@@ -36,6 +36,7 @@ setup(
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11",
         "Topic :: Software Development :: Libraries",
     ],
     long_description=README,

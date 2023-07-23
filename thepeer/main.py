@@ -1,23 +1,53 @@
 import hmac
 import hashlib
 import json  # type: ignore
-import os
-import sys
 
 import httpx  # noqa: E402
 from .utils.constants import BASE_URL  # noqa: E402
 from .utils.exceptions.handleErrors import SwitchErrorStates  # noqa: E402
+from typing import Union
 
 
 class Thepeer:
-    def __init__(self, secret):
+    def __init__(self, secret: str):
         # pass a default value for the url
         self.url = BASE_URL
         self.secret = secret
         # set default headers to be used in all requests
         self.headers = {"x-api-key": self.secret, "content-Type": "application/json"}
 
-    def validate_signature(self, data, signature):
+    def get_businesses(self, channel: str):
+        """This endpoint returns businesses based on the API they integrated.
+        Args:
+            channel (string): The specific API to return businesses of.
+            Supported values are `send`, `checkout`, and `direct_charge`.
+        """
+        try:
+            response = httpx.get(
+                f"{self.url}/businesses?channel={channel}", headers=dict(self.headers)
+            )
+            return response.json()
+        except Exception as e:
+            raise SwitchErrorStates(e).switch()
+
+    def generate_checkout(self, data: dict[str, Union[str, int]]):
+        """
+        This is a checkout endpoint that you can use to generate a link for your customer to make a
+        one-time payment with.
+        Args:
+            data (dict): The request payload which contains the `currency` (NGN),
+            `amount`, `email`, and optionally `redirect_url` and `meta` fields.
+        """
+        try:
+            parsed_data = json.dumps(data)
+            response = httpx.post(
+                f"{self.url}/checkout", data=parsed_data, headers=dict(self.headers)
+            )
+            return response.json()
+        except Exception as e:
+            raise SwitchErrorStates(e).switch()
+
+    def validate_signature(self, data, signature: str):
         """helper method to validate the signature of the data received
         from thepeer's servers, it's usually used for validating webhook events
         coming from thepeer's servers
@@ -31,7 +61,7 @@ class Thepeer:
         SHA1 = hashlib.sha1
         return signature == hmac.new(self.secret.encode(), data.encode(), SHA1).hexdigest()
 
-    def index_user(self, name, identifier, email):
+    def index_user(self, name: str, identifier: str, email: str):
 
         """this method helps identify the user on thepeer's servers in order to facilitate
         more usage of the SDK
@@ -50,14 +80,14 @@ class Thepeer:
 
             data = {"name": name, "identifier": identifier, "email": email}
             # convert the data to json
-            data = json.dumps(data)
-            response = httpx.post(f"{self.url}/users", data=data, headers=dict(self.headers))
+            parsed_data = json.dumps(data)
+            response = httpx.post(f"{self.url}/users", data=parsed_data, headers=dict(self.headers))
             return response.json()
 
         except Exception as e:
             raise SwitchErrorStates(e).switch()
 
-    def view_user(self, reference):
+    def view_user(self, reference: str):
         """this method helps view the user's information on thepeer's servers
         it is usually called after the user has indexed himself
 
@@ -93,7 +123,7 @@ class Thepeer:
         except Exception as e:
             raise SwitchErrorStates(e).switch()
 
-    def update_user(self, reference, **data):
+    def update_user(self, reference: str, **data):
         """this method helps update the user's information on thepeer's servers
         it is usually called after the user has indexed himself
 
@@ -107,15 +137,15 @@ class Thepeer:
             other related information
         """
         try:
-            data = json.dumps(data)
+            parsed_data = json.dumps(data)
             response = httpx.put(
-                f"{self.url}/users/{reference}", data=data, headers=dict(self.headers)
+                f"{self.url}/users/{reference}", data=parsed_data, headers=dict(self.headers)
             )
             return response.json()
         except Exception as e:
             raise SwitchErrorStates(e).switch()
 
-    def delete_user(self, reference):
+    def delete_user(self, reference: str):
         """this method helps delete the indexed user info on thepeer's servers
         a user can always reindex himself
 
@@ -128,8 +158,9 @@ class Thepeer:
         except Exception as e:
             raise SwitchErrorStates(e).switch()
 
-    def get_user_links(self, reference):
-        """this method helps to get the user's payment links on thepeer's servers
+    def get_user_links(self, reference: str):
+        """This endpoint returns all linked accounts of a user, the user's account details,
+          as well as the business the account is on.
 
 
         Args:
@@ -145,8 +176,8 @@ class Thepeer:
         except Exception as e:
             raise SwitchErrorStates(e).switch()
 
-    def get_single_link(self, link_id):
-        """this method returns a user's linked account details on thepeer's servers
+    def get_single_link(self, link_id: str):
+        """This endpoint returns a user's linked account's details.
 
 
         Args:
@@ -162,7 +193,7 @@ class Thepeer:
         except Exception as e:
             raise SwitchErrorStates(e).switch()
 
-    def charge_link(self, link_id, amount, remark, currency="NGN"):
+    def charge_link(self, link_id: str, amount: Union[str, int], remark: str, currency="NGN"):
         """allows a business to charge a user via their linked account
 
         Args:
@@ -183,7 +214,7 @@ class Thepeer:
         except Exception as e:
             raise SwitchErrorStates(e).switch()
 
-    def authorize_charge(self, charge_reference, event):
+    def authorize_charge(self, charge_reference: str, event: str):
         """allows a business to authorize a direct charge request made by a user
 
         Args:
@@ -205,7 +236,7 @@ class Thepeer:
         except Exception as e:
             raise SwitchErrorStates(e).switch()
 
-    def get_transaction_detail(self, transaction_id):
+    def get_transaction_detail(self, transaction_id: str):
         """Get the details about a transaction
         Args:
             transaction_id (string): the unique identifier of the transaction
@@ -222,7 +253,7 @@ class Thepeer:
         except Exception as e:
             raise SwitchErrorStates(e).switch()
 
-    def refund_transaction(self, transaction_id, reason):
+    def refund_transaction(self, transaction_id: str, reason: str):
 
         """This method allows a business to refund a transaction back to the user
         who made the transaction for obvious reasons.
