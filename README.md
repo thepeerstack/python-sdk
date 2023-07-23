@@ -18,7 +18,7 @@ Instantiate ```Thepeer``` class like so:
 ```python
 from thepeer import Thepeer
 
-# create an instance of ThepeerInit class
+# create an instance of Thepeer class
 
 thepeer_instance = Thepeer("YOUR_API_KEY_HERE")
 
@@ -29,8 +29,9 @@ thepeer_instance = Thepeer("YOUR_API_KEY_HERE")
 **Note:**
  - For more info about the exposed methods, please refer to the general [documentation](https://docs.thepeer.co/)
  - Be sure to keep your API Credentials securely in [environment variables](https://www.twilio.com/blog/environment-variables-python)
+
 ### Indexing a user
-This describes how to index a user on your account (this is usually the first step before using other methods)
+This method describes how to index a user on your account (this is usually the first step before using other methods)
 
 ```python
 test = thepeer_instance.index_user("Osagie Iyayi", "iyayiemmanuel1@gmail.com", "iyayiemmanuel1@gmail.com")
@@ -89,7 +90,7 @@ test = thepeer_instance.all_users(1,15)
 
 
 ### Update an indexed user
-This methods helps to update the details of an indexed user
+This method helps to update the details of an indexed user
 
 ```python
 test = thepeer_instance.update_user(reference,**data)
@@ -108,7 +109,7 @@ test = thepeer_instance.update_user("3bbb0fbf-82fa-48a0-80eb-d2c0338fe7dd", iden
     email="dwave101@gmail.com")
 ```
 ### Remove an indexed user
-This methods helps to remove the details of an indexed user from a specific account
+This method helps to remove the details of an indexed user from a specific account
 
 ```python
 test = thepeer_instance.delete_user("3bbb0fbf-82fa-48a0-80eb-d2c0338fe7dd")
@@ -120,9 +121,53 @@ test = thepeer_instance.delete_user("3bbb0fbf-82fa-48a0-80eb-d2c0338fe7dd")
 |----------------------|---------------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | ```reference```            | ```string```                  |  ```true```    | ```the unique reference returned when the user was indexed```
 
+
+
+
+ ### Get Businesses
+This method returns businesses based on the API they integrated.
+
+```python
+test = thepeer_instance.get_businesses("checkout")
+```
+
+#### Parameters supported
+
+
+| Parameters           | Data type                 | Required | Description                                                                                                                                                                                                                                         |
+|----------------------|---------------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ```channel```            | ```string```                  |  ```true```    | ```The specific API to return businesses of. supported values are send, checkout, and direct_charge```
+
+
+### Generate a Checkout
+This method allows you to generate a link for your customer to make a one-time payment with
+```python
+test = thepeer_instance.generate_checkout({
+    "amount": 1000000,
+    "currency": "NGN",
+    "redirect_url": "https://esportfolio.netlify.app",
+    "email": "jevede6918@muzitp.com",
+    "meta":{
+        "name": "Eddie Kirsch",
+        "identifier": "eddiekirsch",
+    }
+})
+```
+
+#### Parameters required
+
+| Parameters           | Data type                 | Required | Description                                                                                                                                                                                                                                         |
+|----------------------|---------------------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ```redirect_url```        | ```string```                   | ```false```     | ```The url Thepeer should redirect to after the customer completes payment.```
+| ```amount```            | ```integer```               |  ```true```    | ```The amount you are debiting the customer. This should be in kobo. The minimum value is 10000```
+| ```email```        | ```string```                   | ```true```     | ```The customer’s email address```                                                                     |
+| ```currency```               | ```string```                    | ```true```    | ```The currency the transaction should be carried out in. The supported value is NGN.```
+| ```meta```               | ```dictionary```                    | ```false```    | ```An object containing additional attributes you will like to have in your transaction response.```
+
+
 ### Get user links
 
-This endpoint returns all linked accounts of a user, the user’s account details, as well as the business the account is on.
+This method returns all linked accounts of a user, the user’s account details, as well as the business the account is on.
 ```python
 test = thepeer_instance.get_user_links("3bbb0fbf-82fa-48a0-80eb-d2c0338fe7dd")
 ```
@@ -135,7 +180,7 @@ test = thepeer_instance.get_user_links("3bbb0fbf-82fa-48a0-80eb-d2c0338fe7dd")
 
 ### Get single link (linked account)
 
-This endpoint returns a user's linked account's details.
+This method returns a user's linked account's details.
 
 ```python
 test = thepeer_instance.get_single_link("da14a90c-61c2-4cf7-a837-e3112a2d0c3d")
