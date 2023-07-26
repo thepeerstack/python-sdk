@@ -1,5 +1,5 @@
 import pathlib
-import setuptools  # noqa: F401
+from setuptools import find_packages  # noqa: F401
 from distutils.core import setup
 
 
@@ -12,11 +12,11 @@ README = (HERE / "README.md").read_text()
 
 setup(
     name="pythepeer",
-    version="0.0.5",
+    version="0.0.6",
     description="official python sdk for interacting with thepeer payment processing \
     infrastructure",
     author="Osagie Iyayi",
-    packages=["thepeer"],
+    packages=find_packages(),
     author_email="iyayiemmanuel1@gmail.com",
     url="https://github.com/thepeerstack/python-sdk",
     license="MIT",
