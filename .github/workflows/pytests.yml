@@ -28,14 +28,16 @@ jobs:
         # Display the Python version being used
       - name: Display Python version
         run: python -c "import sys; print(sys.version)"
-        # Install the package using the setup.py
-      - name: Install package
-        run: pip install -e .
-        # Install coverage (you can use some other testing utility)
-      - name: Install coverage
+      - name: Install Poetry
         run: |
           python -m pip install --upgrade pip
-          pip install coverage
-        # Run the tests. I'm using unittest and coverage and the file is in the tests directory.
+          pip install poetry
+        # Install the package dependencies
+      - name: Install package dependencies
+        run: poetry install
+        # Install coverage (you can use some other testing utility)
+      - name: Install coverage
+        run: pip install coverage
+        # Run the tests. I'm using unittest and coverage, and the file is in the tests' directory.
       - name: Run tests
         run: coverage run -m unittest

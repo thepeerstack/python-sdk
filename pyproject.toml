@@ -1,3 +1,36 @@
+[tool.poetry]
+name = "pythepeer"
+version = "0.0.7"
+description = "official python sdk for interacting with thepeer payment processing infrastructure"
+authors = ["Osagie Iyayi <iyayiemmanuel1@gmail.com>"]
+readme = "README.md"
+packages = [{ include = "thepeer" }]
+keywords = ["thepeer", "pythepeer", "fintech", "peer-to-peer"]
+license = "MIT"
+classifiers = [
+        "Development Status :: 5 - Production/Stable",
+        # Chose either "3 - Alpha", "4 - Beta" or "5 - Production/Stable"
+        # as the current state of your package
+        "Intended Audience :: Developers",  # Define that your audience are developers
+        "Topic :: Software Development :: Build Tools",
+        "License :: OSI Approved :: MIT License",  # Again, pick a license
+        "Programming Language :: Python :: 3",
+        # Specify which python versions that you want to support
+        "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11",
+        "Topic :: Software Development :: Libraries",
+    ]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+httpx = "^0.24.1"
+
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.7.0"
+ruff = "^0.0.287"
+
 [build-system]
-requires = ["setuptools>=42", "httpx"]
-build-backend = "setuptools.build_meta"
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

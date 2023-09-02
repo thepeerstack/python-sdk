@@ -135,3 +135,4 @@ guide.md
 .DS_Store
 junk*
 .pypirc
+.idea/
